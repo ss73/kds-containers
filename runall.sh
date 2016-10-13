@@ -1,14 +1,14 @@
 #!/bin/sh
 cd $(dirname "$0")
 echo "Starting Solr"
-./solr/run.sh
+./solr/prodrun.sh
 echo "Starting Index service --> Linked to Solr"
-./indexsvc/linkedrun.sh
+./indexsvc/prodrun.sh
 echo "Starting Blob Service"
-./blobsvc/run.sh
+./blobsvc/prodrun.sh
 echo "Starting Web Application --> Linked to Index and Blob Services"
-./webapp/linkedrun.sh
+./webapp/prodrun.sh
 echo "Starting Convert Service (PDF-to-text)"
-./convertsvc/run.sh
+./convertsvc/prodrun.sh
 echo "Starting Batch Service --> Linked to Index, Blob and Convert Services"
-./batchsvc/linkedrun.sh
+./batchsvc/prodrun.sh
