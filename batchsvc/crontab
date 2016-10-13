@@ -1,0 +1,1 @@
+* * * * * root /opt/batch_service/runbatch.sh >> /var/log/cron.log
