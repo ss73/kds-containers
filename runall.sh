@@ -1,14 +1,5 @@
-#!/bin/sh
-cd $(dirname "$0")
-echo "Starting Solr"
-./solr/run.sh
-echo "Starting Index service --> Linked to Solr"
-./indexsvc/linkedrun.sh
-echo "Starting Blob Service"
-./blobsvc/run.sh
-echo "Starting Web Application --> Linked to Index and Blob Services"
-./webapp/linkedrun.sh
-echo "Starting Convert Service (PDF-to-text)"
-./convertsvc/run.sh
-echo "Starting Batch Service --> Linked to Index, Blob and Convert Services"
-./batchsvc/linkedrun.sh
+docker run -d --name indexsvc --link solr -p 32600:32600 index_svc:1.0
+docker run -d --name blobsvc -p 32500:32500 blob_svc:1.0
+docker run -d --name convsvc -p 32400:32400 convert_svc:1.0
+docker run -d --name webapp --link indexsvc --link blobsvc -p 32000:32000 es_webapp:1.0
+docker run -d --name batchsvc --link indexsvc --link blobsvc --link webapp --link convsvc -p 32700:32700  batch_svc:1.0
