@@ -1,4 +1,5 @@
 #!/bin/sh
+docker run -d --name solr es_solr:1.0
 docker run -d --name indexsvc --link solr index_svc:1.0
 docker run -d --name blobsvc blob_svc:1.0
 docker run -d --name convsvc convert_svc:1.0
