@@ -11,4 +11,8 @@ echo "Starting Web Application --> Linked to Index and Blob Services"
 echo "Starting Convert Service (PDF-to-text)"
 ./convertsvc/run.sh
 echo "Starting Batch Service --> Linked to Index, Blob and Convert Services"
+<<<<<<< HEAD
 ./batchsvc/linkedrun.sh
+=======
+./batchsvc/linkedrun.sh
+>>>>>>> 5bbe681f4730e939e892c644719449e8b620dcd7
