@@ -9,7 +9,7 @@
 FROM node:latest
 
 # File author/maintainer
-MAINTAINER Stellan Söderström <stellan.soderstrom@gmail.com.com>
+MAINTAINER Stellan Söderström <stellan.soderstrom@gmail.com>
 
 #################### INSTALLATION START ####################
 
