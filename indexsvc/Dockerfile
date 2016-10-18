@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y \
 && rm -rf /var/lib/apt/lists/*
 
 # Get the source code
+# First, a little trick to invalidate the docker cache
+ADD https://api.github.com/repos/ss73/kds-index_service/git/refs/heads/master version.json
 RUN git clone -b master https://github.com/ss73/kds-index_service.git /opt/index_service/
 
 ##################### INSTALLATION END #####################
