@@ -1,4 +1,4 @@
-############################################################
+﻿############################################################
 # Dockerfile to build pdf to text converter microservice 
 # container images.
 #
@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
 
 # Get the source code
 # First, a little trick to invalidate the docker cache if the code has changed
-ADD https://api.github.com/repos/ss73/kds-convert-service/git/refs/heads/docker version.json
+ADD https://api.github.com/repos/ss73/kds-convert_service/git/refs/heads/master version.json
 # Next, clone into the destination
 RUN git clone -b docker https://github.com/ss73/kds-convert_service.git /opt/convert_service/
 

@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  solr:
+    build: 
+      context: ./solr
+      args:
+      - http_proxy
+      - https_proxy
+
+  indexsvc:
+    build:
+      context: ./indexsvc
+      args:
+      - http_proxy
+      - https_proxy
+    links:
+    - solr
+
+  blobsvc:
+    build:
+      context: ./blobsvc
+      args:
+      - http_proxy
+      - https_proxy
+
+  convsvc:
+    build:
+      context: ./convertsvc
+      args:
+      - http_proxy
+      - https_proxy
+
+  webapp:
+    build:
+      context: ./webapp
+      args:
+      - http_proxy
+      - https_proxy
+    links:
+    - indexsvc
+    - blobsvc
+    ports:
+    - 8080:32000
+
+  batchsvc:
+    build:
+      context: ./batchsvc
+      args:
+      - http_proxy
+      - https_proxy      
+    links:
+    - indexsvc
+    - blobsvc
+    - convsvc
+    - webapp
+    environment:
+      no_proxy: 127.0.0.1, localhost
+      NO_PROXY: 127.0.0.1, localhost
+

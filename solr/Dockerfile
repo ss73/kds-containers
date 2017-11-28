@@ -11,6 +11,12 @@ FROM solr:latest
 MAINTAINER Stellan Söderström <stellan.soderstrom@gmail.com>
 
 #################### INSTALLATION START ####################
+ARG http_proxy
+ARG https_proxy
+ARG no_proxy
+
+RUN echo "Proxy server: $http_proxy"
+RUN echo "No proxy for: $no_proxy"
 
 WORKDIR /opt/solr/server/solr/
 ADD core_archive /opt/solr/server/solr/archive

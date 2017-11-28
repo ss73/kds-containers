@@ -12,6 +12,12 @@ FROM node:latest
 MAINTAINER Stellan Söderström <stellan.soderstrom@gmail.com>
 
 #################### INSTALLATION START ####################
+ARG http_proxy
+ARG https_proxy
+ARG no_proxy
+
+RUN echo "Proxy server: $http_proxy"
+RUN echo "No proxy for: $no_proxy"
 
 # Curl is used for testing and git for downloading the source
 RUN apt-get update && apt-get install -y \
