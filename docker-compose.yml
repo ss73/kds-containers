@@ -16,6 +16,9 @@ services:
       - https_proxy
     links:
     - solr
+    environment:
+      no_proxy: 127.0.0.1, localhost, solr
+      SOLR_PORT_8983_TCP_ADDR: solr
 
   blobsvc:
     build:
@@ -40,6 +43,10 @@ services:
     links:
     - indexsvc
     - blobsvc
+    environment:
+      no_proxy: 127.0.0.1, localhost, blobsvc, indexsvc
+      INDEXSVC_PORT_32600_TCP_ADDR: indexsvc
+      BLOBSVC_PORT_32500_TCP_ADDR: blobsvc
     ports:
     - 8080:32000
 
@@ -55,6 +62,8 @@ services:
     - convsvc
     - webapp
     environment:
-      no_proxy: 127.0.0.1, localhost
-      NO_PROXY: 127.0.0.1, localhost
-
+      no_proxy: 127.0.0.1, localhost, webapp, blobsvc, convsvc, indexsvc
+      WEBAPP_PORT_32000_TCP_ADDR: webapp
+      CONVSVC_PORT_32400_TCP_ADDR: convsvc
+      INDEXSVC_PORT_32600_TCP_ADDR: indexsvc
+      BLOBSVC_PORT_32500_TCP_ADDR: blobsvc
